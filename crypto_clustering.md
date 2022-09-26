@@ -1617,4 +1617,3 @@ plot_df.hvplot.scatter(x="TotalCoinsMined"
 })(window);</script>
 
 
-# Cryptocurrencies
