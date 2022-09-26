@@ -1,5 +1,5 @@
 # Clustering Cryptocurrencies
-*** Application of K-Means Clustering to Identify Groups of Cryptocurrencies ***
+***Application of K-Means Clustering to Identify Groups of Cryptocurrencies***
 #### by Justin R. Papreck
 ---
 
@@ -8,6 +8,7 @@
 As cryptocurrencies continue to rise in popularity worldwide, it is difficult to determine which crypocurrencies are similar. Many cryptocurrencies use similar algorithms, yet others rely on unique algorithms that may yield the same types of results. As the unique number of crypocurrencies continues to rise, it is difficult to ascertain how each of them are related, and whether the algorithm itself is even a good predictor of how each crypto can be classified. K-Means clusterding, is applied here to perform unsupervised machine learning in the grouping of over 500 active currencies. It is important to know which cryptocurrencies are similar for potential crypto investors. For example, the periodic table enthusiast who recently discovered cryptocurrencies and wants to sample the elements but at the same time wants to diversify. Are the differences between Osmium, Actinium, Lithium, Einsteinium, and Radium as simple as their locations on the periodic table? Or perhaps it's a cannabis entrepreneur looking to invest in 3 different cryptocurrencies, but they have to choose between Cannabis Industry Coin, Canna Coin, Sativa Coin, GanjaCoin, KushCoin and PotCoin and want to diversify their investments as they diversify their stock. Or perhaps there is just a sci-fi investor willing to put all of their money into one place and wants it to go into whatever algorithm is most similar to BitCoin, but wants it to be in 42, Unobtainium, or Klingon Empire Darsek. This application aims to classify all of these currencies through unsupervised learning.
 
 ### Deliverable 1: Preprocessing the Data for Principal Component Analysis (PCA)
+---
 
 Upon first glance of the data, there are cryptocurrencies that are not trading as well as currencies that haven't mined or acquired a supply of coins. 
 
@@ -404,9 +405,9 @@ To address these columns, dummy variables were created for each algorithm and pr
 # Standardize the data with StandardScaler().
 X = StandardScaler().fit_transform(X)
 ```
----
 
 ### Deliverable 2: Reducing Data Dimensions Using PCA
+---
 
 Due to the use of dummies, the data expaned to 100 columns, a number of dimensions that would be visually impossible to present. Using PCA() from scikit-learn, the number of dimensions were reduced to 3 for the ability to present in a 3-dimensional graph. The components were named PC 1, PC 2, and PC 3, and the dataframe maintains the indices established in the previous dataframe. 
 
@@ -484,16 +485,18 @@ Due to the use of dummies, the data expaned to 100 columns, a number of dimensio
   </tbody>
 </table>
 </div>
----
 
 
 ### Deliverable 3: Clustering Crytocurrencies Using K-Means
-*** Finding the Best Value for 'k' Using the Elbow Curve ***
+--- 
+
+***Finding the Best Value for 'k' Using the Elbow Curve***
 
 To determine the optimal number of clusters for the K-Means Clustering application, an elbow curve was created comparing the inertia with the number of clusters. There is a clear bend at 4 clusters with diminishing returns after, so the analyses were performed with 4 clusters.  
 
 
-ELBOW CURVE
+![Elbow_Curve](https://user-images.githubusercontent.com/33167541/192398251-de0e2d14-23d7-4978-a6c9-9c7bd5f8ec3b.png)
+
 
 
 ```python 
@@ -667,10 +670,10 @@ These data were concatenated into a dataframe along with the PCA data and the or
   </tbody>
 </table>
 </div>
----
 
 
 ### Deliverable 4: Visualizing Cryptocurrencies Results
+--- 
 
 #### 3D-Scatter with Clusters
 
@@ -678,8 +681,8 @@ With the reduced dimensions from the PCA application, the results can be visuali
 
 
 
+![3D_Graph](https://user-images.githubusercontent.com/33167541/192398263-f28d4413-aa99-4d55-a496-40c3f72db975.png)
 
-CLUSTER 3D  FIGURE
 
 
 Something very clear with this graph are the points from Classes 1 and 2. (Note: the class number changes when the application is run, but these classes refer to the above figure).
@@ -693,10 +696,7 @@ Something very clear with this graph are the points from Classes 1 and 2. (Note:
 Since it is difficult to filter or find individual currencies, such as the ones mentioned in the Overview, hvplot was used to create an interactive table that can be sorted by each of the original parameters. 
 
 
-
-
-HV PLOT INTERACTIVE TABLE
-
+![Table](https://user-images.githubusercontent.com/33167541/192398275-4ec69bdc-2d54-49c3-b760-6d1047a10f82.png)
 
 
 
@@ -805,8 +805,6 @@ clustered_scaled_df = clustered_scaled_df[["TotalCoinSupply", "TotalCoinsMined",
 </div>
 
 
-
-
 ```python
 # Alternatively, the above steps can be done...
 # Create a new dataframe that has the scaled data
@@ -817,100 +815,7 @@ plot_df.index = clustered_df.index
 
 # Add the coin name and add the class from the original 
 plot_df[["CoinName", "Class"]] = clustered_df[["CoinName", "Class"]] 
-
-plot_df.head(10)
 ```
-
-
-
-
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TotalCoinSupply</th>
-      <th>TotalCoinsMined</th>
-      <th>CoinName</th>
-      <th>Class</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>42</th>
-      <td>4.200000e-11</td>
-      <td>0.005942</td>
-      <td>42 Coin</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>404</th>
-      <td>5.320000e-04</td>
-      <td>0.007002</td>
-      <td>404Coin</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1337</th>
-      <td>3.141593e-01</td>
-      <td>0.035342</td>
-      <td>EliteCoin</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BTC</th>
-      <td>2.100000e-05</td>
-      <td>0.005960</td>
-      <td>Bitcoin</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>ETH</th>
-      <td>0.000000e+00</td>
-      <td>0.006050</td>
-      <td>Ethereum</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>LTC</th>
-      <td>8.400000e-05</td>
-      <td>0.006006</td>
-      <td>Litecoin</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>DASH</th>
-      <td>2.200000e-05</td>
-      <td>0.005951</td>
-      <td>Dash</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>XMR</th>
-      <td>0.000000e+00</td>
-      <td>0.005960</td>
-      <td>Monero</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>ETC</th>
-      <td>2.100000e-04</td>
-      <td>0.006056</td>
-      <td>Ethereum Classic</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>ZEC</th>
-      <td>2.100000e-05</td>
-      <td>0.005950</td>
-      <td>ZCash</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 
 
 These data were plotted in a 2D scatter plot. As can be seen, once again Class 2, the BitTorrent currency really stands out having the highest supply and the highest number of coins mined. Class 1 also has a single currency, TurtleCoin, that matches the maximum total coin supply, but the coins mined is only a fraction of that of BitTorrent. 
@@ -931,32 +836,106 @@ plot_df.hvplot.scatter(x="TotalCoinsMined"
     , title="K-Means Scatter of Cryptocurrencies, Total Coins Mined vs. Total Coin Supply"
     )
 ```
+
+
+![2D_Graph](https://user-images.githubusercontent.com/33167541/192398617-41f2153e-cf8c-4135-b9db-835859720e8b.png)
+
+
+
+
 ---
 
 To finally address the question posed at the beginning regarding someone interested in a particular subset of cryptocurrencies by name, a function was created to do just this, requiring only the input of a list with those coin names. 
 
 ```python 
 def investor(investments, df=clustered_df):
-    results = clustered_df[clustered_df['CoinName'].isin(investments)][["CoinName", "Algorithm", "ProofType", "Class"]]
+    results = clustered_df[clustered_df['CoinName'].isin(investments)]
+    results = results[["CoinName", "Algorithm", "ProofType", "Class"]]
     return results
 ```
 
-
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CoinName</th>
+      <th>Algorithm</th>
+      <th>ProofType</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>EMC2</th>
+      <td>Einsteinium</td>
+      <td>Scrypt</td>
+      <td>PoW</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>ACM</th>
+      <td>Actinium</td>
+      <td>Lyra2Z</td>
+      <td>PoW</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>LIT</th>
+      <td>Lithium</td>
+      <td>Blake</td>
+      <td>PoW</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>RADS</th>
+      <td>Radium</td>
+      <td>PoS</td>
+      <td>PoS</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CoinName</th>
+      <th>Algorithm</th>
+      <th>ProofType</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42</th>
+      <td>42 Coin</td>
+      <td>Scrypt</td>
+      <td>PoW/PoS</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>UNO</th>
+      <td>Unobtainium</td>
+      <td>SHA-256</td>
+      <td>PoW</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>KED</th>
+      <td>Klingon Empire Darsek</td>
+      <td>Scrypt</td>
+      <td>PoW/PoS</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
